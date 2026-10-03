@@ -39,10 +39,15 @@ class AudioSpatialSystem:
 
     def initialize(self) -> bool:
         """初始化系统"""
-        # BUG: 没有设置_initialized标志
         self.state = State()
         self.history = []
+        self._initialized = True
         return True
+
+    @property
+    def timestamp(self) -> float:
+        """当前时间戳"""
+        return self.state.timestamp
 
     def tick(self, delta_time: float = 1.0) -> None:
         """推进一个时间步"""
